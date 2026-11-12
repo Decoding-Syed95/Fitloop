@@ -206,3 +206,5 @@ app.get('/healthz', (req, res) => res.send('ok'));
 
 app.listen(PORT, () => console.log(`FitLoop running on :${PORT}`));
 process.on('SIGTERM', () => { S.flush(); process.exit(0); });
+app.get(['/', '/index.html'], (q, r) => r.sendFile(path.join(__dirname, 'index.html')));
+app.get(['/app.css', '/app.js'], (q, r) => r.sendFile(path.join(__dirname, q.path)));
